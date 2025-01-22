@@ -1,0 +1,2 @@
+/.*/ fich1.delete fich2.delete cat $test_file | sed -r "$sed_string" &> $fich1; \
+./custom_readelf -s ${test_file%.*.dump}.data &> $temp_file; echo $?; sed -r "$sed_string" $temp_file &> $fich2

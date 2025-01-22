@@ -1,0 +1,24 @@
+Symbol table '<no-strings>' contains 22 entries:
+Num:    Value  Size Type    Bind   Vis      Ndx Name
+0: 00000000    0 NOTYPE LOCAL DEFAULT UND 
+1: 00000020    0 SECTION LOCAL DEFAULT <no-strings>  <no-strings>
+2: 0000018c    0 SECTION LOCAL DEFAULT <no-strings>  <no-strings>
+3: 00002800    0 SECTION LOCAL DEFAULT <no-strings>  <no-strings>
+4: 00002800    0 SECTION LOCAL DEFAULT <no-strings>  <no-strings>
+5: 00000000    0 SECTION LOCAL DEFAULT <no-strings>  <no-strings>
+6: 00000000    0 SECTION LOCAL DEFAULT <no-strings>  <no-strings>
+7: 00000000    0 FILE LOCAL DEFAULT ABS tri.c
+8: 00000020    0 NOTYPE LOCAL DEFAULT <no-strings>  $a
+9: 0000018c    0 NOTYPE LOCAL DEFAULT <no-strings>  $d
+10: 00000188    0 NOTYPE LOCAL DEFAULT <no-strings>  $d
+11: 00002800    0 NOTYPE GLOBAL DEFAULT <no-strings>  _bss_end__
+12: 00002800    0 NOTYPE GLOBAL DEFAULT <no-strings>  __bss_start__
+13: 00000020    280 FUNC GLOBAL DEFAULT <no-strings>  trier_par_selection
+14: 00002800    0 NOTYPE GLOBAL DEFAULT <no-strings>  __bss_end__
+15: 00002800    0 NOTYPE GLOBAL DEFAULT <no-strings>  __bss_start
+16: 00000138    84 FUNC GLOBAL DEFAULT <no-strings>  main
+17: 00002800    0 NOTYPE GLOBAL DEFAULT <no-strings>  __end__
+18: 00002800    0 NOTYPE GLOBAL DEFAULT <no-strings>  _edata
+19: 00002800    0 NOTYPE GLOBAL DEFAULT <no-strings>  _end
+20: 00080000    0 NOTYPE GLOBAL DEFAULT <no-strings>  _stack
+21: 00002800    0 NOTYPE GLOBAL DEFAULT <no-strings>  __data_start

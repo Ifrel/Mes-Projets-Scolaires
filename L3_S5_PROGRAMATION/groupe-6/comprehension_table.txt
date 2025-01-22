@@ -1,0 +1,221 @@
+32-Bit Data Types
+    Name            Size    Alignment   Purpose
+
+    Elf32_Addr      4       4           Unsigned program address
+    Elf32_Half      2       2           Unsigned medium integer
+    Elf32_Off       4       4           Unsigned file offset
+    Elf32_Sword     4       4           Signed large integer
+    Elf32_Word      4       4           Unsigned large integer
+    unsigned char   1       1           Unsigned small integer
+
+
+
+ELF Header:
+    Octets 0-15 (0x00-0x0F):
+        e_ident[]:
+            ELFMAG0 0x7f e_ident[EI_MAG0]   (0)
+            ELFMAG1 ’E’ e_ident[EI_MAG1]    (1)
+            ELFMAG2 ’L’ e_ident[EI_MAG2]    (2)
+            ELFMAG3 ’F’ e_ident[EI_MAG3]    (3)
+            e_ident[EI_CLASS]               (4)
+            e_ident[EI_DATA]                (5)
+            e_ident[EI_VERSION]             (6)
+            e_ident[EI_PAD]                 (7-15)
+    
+    Otets 16-51 (0x10-0x33):
+            Elf32_Half e_type;              (16-17) (0x10-0x11) Type de fichier : Reloge, Exécutable, Bibliothèque partagée, etc.
+            Elf32_Half e_machine;           (18-19) (0x12-0x13) Architecture cible (ex. : Intel x86, ARM, etc.).
+            Elf32_Word e_version;           (20-23) (0x14-0x17) Identifie la version du fichier objet.
+            Elf32_Addr e_entry;             (24-27) (0x18-0x1B) Adresse virtuelle ou commence l'exécution du programme (point d'entrée).
+            Elf32_Off e_phoff;              (28-31) (0x1C-0x1F) Offset en octets à partir du début du fichier vers la table des en-têtes de programme.
+            Elf32_Off e_shoff;              (32-35) (0x20-0x23) Offset en octets à partir du début du début vers la table des en-têtes de section.
+            Elf32_Word e_flags;             (36-39) (0x24-0x27) Drapeaux spécifiques au processeur. (Dépendance de l'architecture).
+            Elf32_Half e_ehsize;            (40-41) (0x28-0x29) Taille de l'en-tête ELF (en octets). Généralement 52 pour ELF32.
+            Elf32_Half e_phentsize;         (42-43) (0x2A-0x2B) Taille d'une ensente dans la table des en-têtes de programme.
+            Elf32_Half e_phnum;             (44-45) (0x2C-0x2D) Nombre d'entrées dans la table des en-têtes de programme.
+            Elf32_Half e_shentsize;         (46-47) (0x2E-0x2F) Taille d'une enntée dans la table des en-tête de section.
+            Elf32_Half e_shnum;             (48-49) (0x30-0x31) Nombre d'entrées dans la table des en-têtes de section.
+            Elf32_Half e_shstrndx;          (50-51) (0x32-0x33) Index de la table contenant les noms des sections.
+    
+
+Tableau des sections:
+    Le tableau des sections est un composant essentiel pour les sections du fichier ELF, telles que .text, .data, .bss, etc. Il est utilisé pour accéder aux contenus dans ces sections.
+    
+    Localisation:
+
+    - L'offset du tableau des sections est donné par le champ e_shoff dans l'en-tête ELF.
+    - La taille de chaque entrée est spécifiée par e_shentsize.
+    - Le nombre total d'entrées est par indiqué e_shnum.
+
+    Offsets et Taille :
+        Nom_du_champ	Décalés(octets)	    Taille(octets)	    Description
+        
+        e_shoff	        0x20-0x23	        4	                Offset vers le tableau des sections.
+        e_shentsize	    0x2E-0x2F	        2	                Taille d'une seule entrée du tableau des sections.
+        e_shnum	        0x30-0x31	        2	                Nombre total d'entrées dans le tableau des sections.
+
+    
+    Structure d'une entrée (Elf32-Shdr) :
+    Chaque entrée du tableau des sections a une structure comme suit :
+
+    typedef struct {
+        Elf32_Word   sh_name;      /* Nom de la section (index dans la table des chaînes) */
+        Elf32_Word   sh_type;      /* Type de la section (ex. : SHT_PROGBITS, SHT_SYMTAB) */
+        Elf32_Word   sh_flags;     /* Attributs (SHF_WRITE, SHF_ALLOC, etc.) */
+        Elf32_Addr   sh_addr;      /* Adresse mémoire de la section */
+        Elf32_Off    sh_offset;    /* Offset dans le fichier vers le début de la section */
+        Elf32_Word   sh_size;      /* Taille de la section en octets */
+        Elf32_Word   sh_link;      /* Liens vers d'autres sections (selon le type de section) */
+        Elf32_Word   sh_info;      /* Informations supplémentaires */
+        Elf32_Word   sh_addralign; /* Alignement nécessaire en mémoire */
+        Elf32_Word   sh_entsize;   /* Taille d'une entrée (pour les sections en tableau) */
+    } Elf32_Shdr;
+
+
+
+Tableau des symboles:
+
+    Le tableau des symboles est une section spéciale contenant les définitions des symboles (fonctions, variables, etc.) et leurs références. Il généralement est nommé .symtab.
+    
+    Localisation:
+
+        - L'offset du tableau des symboles est donné par l'entrée correspondante dans le tableau des sections.
+        - La section .symtab contenants du tableau des symboles, et .strtab noms des symboles sous forme de chaînes.
+
+    Offsets et Taille :
+        Champ	        DescriptionTaille total du tableau des symboles en octets.
+
+        sh_offset	    Offset vers le début du tableau des symboles.
+        sh_size	        Taille total du tableau des symboles en octets.
+        sh_entsize	    Taille d'une seule entrée dans le tableau des symboles.
+
+
+    Entrées de structure d'une (Elf32 - Système):
+    Chaque symbole est défini par une structure suivante :
+
+    typedef struct {
+        Elf32_Word    st_name;   /* Nom du symbole (index dans .strtab) */
+        Elf32_Addr    st_value;  /* Valeur ou adresse du symbole */
+        Elf32_Word    st_size;   /* Taille associée au symbole */
+        unsigned char st_info;   /* Type et liaison du symbole (ex. : fonction, variable) */
+        unsigned char st_other;  /* Réservé (actuellement inutilisé) */
+        Elf32_Half    st_shndx;  /* Index de la section contenant ce symbole */
+    } Elf32_Sym;
+
+
+
+Structure des types de réimplantation :
+
+    Sans addend ( Elf32_Rel) (type SHT_REL ):
+        typedef struct {
+            Elf32_Addr r_offset;  // Offset de la réimplantation (adresse à modifier)
+            Elf32_Word r_info;    // Type de réimplantation et index de symbole
+        } Elf32_Rel;
+
+    Avec addend ( Elf32_Rela) (type SHT_RELA ):
+        typedef struct {
+            Elf32_Addr r_offset;  // Offset de la réimplantation (adresse à modifier)
+            Elf32_Word r_info;    // Type de réimplantation et index de symbole
+            Elf32_Sword r_addend; // Addend explicite
+        } Elf32_Rela;
+
+
+    r_offset :      Adresse ou offset dans la section à modifier pour appliquer la réimplantation.
+    r_info   :      Contient deux informations combinées :
+        - Index de symbole : Désigne l'entrée correspondante dans la table des symboles.
+        - Type de réimplantation : Indique le type d'ajustement à effectuer.
+    r_addend :  	(Optionnel) Valeur d'ajustement supplémentaire utilisée pour la réimplantation.
+
+
+    Le champ "r_info" combine deux informations :
+        Les 8 bits les moins significatifs contiennent le type de réimplantation.
+        Les 24 bits les plus significatifs contiennent l'index du symbole à réimplanter.
+
+        #define ELF32_R_SYM(i)    ((i) >> 8)                // Extrait l'index du symbole
+        #define ELF32_R_TYPE(i)   ((unsigned char)(i))      // Extrait le type de réimplantation
+        #define ELF32_R_INFO(s, t) (((s) << 8) + (unsigned char)(t)) // Combine symbole et type
+
+
+
+    Les sections des tables de réimplantation sont définies dans la table des sections du fichier ELF. 
+    Elles contiennent les entrées de réimplantation et peuvent être associées à une section ou un segment particulier.
+
+    .rel.text	Réimplantation pour la section .text
+    .rel.data	Réimplantation pour la section .data
+    .rela.text	Réimplantation avec addend pour .text
+    .rela.data	Réimplantation avec addend pour .data
+
+    Les sections de réimplantation référencent deux autres sections :
+    -   Une table des symboles (via sh_link dans l'en-tête de section).
+    -   Une section à modifier (via sh_info dans l'en-tête de section).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tableau en-têtes de programme:
+
+    Le tableau des entêtes de programme des informations sur les segments du fichier ELF. Il est utilisé par le chargeur pour le mapper correctement les segments en mémoire.
+    
+    Localisation:
+
+        - L'offset de la table est donné par le champ e_phoff dans l'en-tête ELF.
+        - La taille de chaque entrée est définie par e_phentsize.
+        - Le nombre total d'entrées est par indiqué e_phnum.
+
+    Offsets et Taille :
+        Nom_du_champ	Décalés(octets)	    Taille(octets)	    Description
+        
+        e_phoff	        0x1C-0x1F	    4	                    Offset vers le tableau des en-têtes de programme.
+        e_phentsize	    0x2A-0x2B	    2	                    Taille d'une seule entrée dans le tableau des segments.
+        e_phnum	        0x2C-0x2D	    2	                    Nombre total d'entrées dans le tableau des segments.
+        
+    
+    Structure d'une entrée (Elf32-Phdr) :
+        typedef struct {
+            Elf32_Word   p_type;    /* Type de segment (LOAD, DYNAMIC, NOTE, etc.) */
+            Elf32_Off    p_offset;  /* Offset du segment dans le fichier */
+            Elf32_Addr   p_vaddr;   /* Adresse virtuelle où le segment sera chargé */
+            Elf32_Addr   p_paddr;   /* Adresse physique (non utilisée pour ELF modernes) */
+            Elf32_Word   p_filesz;  /* Taille du segment dans le fichier */
+            Elf32_Word   p_memsz;   /* Taille du segment en mémoire */
+            Elf32_Word   p_flags;   /* Permissions (lecture, écriture, exécution) */
+            Elf32_Word   p_align;   /* Alignement en mémoire et fichier */
+        } Elf32_Phdr;
+
+
+    Résumé Tableau en-têtes de programme::
+
+    Tableau	                            Offset de début_(exemple)	    Champ_dans_l'en-tête_ELF	    Entrée_de_la_Taille_d'une	        Nombre_d'entrées
+
+    Tableau des sections	            e_shoff(ex. : 0x500)	        e_shoff	                        e_shentsize(40 octets)	            e_shnum
+    Tableau des symboles	            .symtab.sh_offset(0x400)	    Décrit dans .symtab	            .symtab.sh_entsize(16 octets)	    Calculé à partir de .symtab
+    Tableau en-têtes de programme	    e_phoff(0x34)	                e_phoff	e_phentsize(32 octets)	                                    e_phnum
+
+
+
+Définition : offset
+
+En informatique, un offset, désigne le décalage ou la distance entre une position de référence 
+(généralement le début d'un fichier, d'une structure ou d'une aire mémoire) et une autre position spécifique. 
+C'est la façon d'indiquer dans l'établissement d'un rapport ou une partie relative à un point de départ.
+
+Par exemple :
+    Début du ELF (octet 0).
+    Si e_phoff = 0x34 cela signifie que la table des en-têtes de programme commence à 52 octets après le début du fichier ELF.

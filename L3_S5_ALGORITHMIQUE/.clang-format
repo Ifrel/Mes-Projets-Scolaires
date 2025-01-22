@@ -1,0 +1,66 @@
+# Basé sur le style Google avec des personnalisations.
+BasedOnStyle: LLVM 
+
+# **Indentation**
+IndentWidth: 4                # Indentation de 4 espaces pour plus de lisibilité.
+TabWidth: 4                   # Largeur des tabulations (si elles sont utilisées).
+UseTab: Never                 # Toujours utiliser des espaces, jamais des tabulations.
+
+# **Longueur des lignes**
+ColumnLimit: 100              # Maximum de caractères par ligne (100 pour plus de flexibilité).
+
+# **Espaces et alignements**
+AlignTrailingComments: true   # Aligne les commentaires en fin de ligne.
+SpacesInParentheses: false    # Pas d'espaces autour des parenthèses.
+SpacesInSquareBrackets: false # Pas d'espaces dans les crochets.
+SpaceBeforeParens: ControlStatements # Espace avant les parenthèses des structures de contrôle.
+AlignOperands: true           # Aligne les opérandes dans les expressions multilignes.
+
+# **Gestion des accolades**
+BreakBeforeBraces: Attach     # Les accolades s'ouvrent sur une nouvelle ligne.
+AllowShortFunctionsOnASingleLine: Inline # Autorise les petites fonctions en une seule ligne.
+
+# **Listes d'arguments**
+BinPackArguments: false       # Ne regroupe pas les arguments sur une seule ligne.
+BinPackParameters: false      # Ne regroupe pas les paramètres sur une seule ligne.
+
+# **Commentaires**
+ReflowComments: true          # Reformate automatiquement les commentaires pour respecter ColumnLimit.
+
+# **Includes**
+SortIncludes: true            # Trie les fichiers #include par ordre alphabétique.
+                              # Séparation des groupes d'includes
+# IncludeCategories:
+#   - Regex:      '^<.*>'      # Inclusions système (par exemple, <stdio.h>)
+#     Priority:   3            # Priorité la plus basse (au début)
+#   - Regex:      '^"[^/]"'    # Inclusions locales (par exemple, "my_header.h")
+#     Priority:   1             # Priorité plus élevée
+#   - Regex:      '^"[^"]*"'   # Inclusions locales
+#     Priority:   2           # Priorité la plus élevée
+#   - Regex:      '.*'         # Tout le reste (par exemple, Boost)
+#     Priority:   4
+IncludeBlocks: Merge         # Fusionner tous les blocs d'inclusion
+
+# **Namespaces**
+NamespaceIndentation: Inner   # Indentation des contenus des namespaces uniquement.
+
+# **Spécificités des fonctions**
+AlwaysBreakAfterReturnType: None  # Le type de retour reste sur la même ligne que la signature.
+AllowShortBlocksOnASingleLine: true # Autorise les petits blocs entre accolades sur une seule ligne.
+
+# **Autres paramètres avancés**
+IndentCaseLabels: true        # Indente les labels `case` dans les switch.
+BreakConstructorInitializers: AfterColon # Saute une ligne après `:` dans les initialisations.
+PointerAlignment: Left        # Les étoiles (*) sont collées au nom de la variable.
+
+# **Personnalisation des opérateurs**
+BreakBeforeBinaryOperators: None   # Les opérateurs binaires restent en fin de ligne.
+BreakAfterJavaFieldAnnotations: false # (Pour Java) Pas de saut de ligne après les annotations de champ.
+
+# **Lignes vides**
+MaxEmptyLinesToKeep: 1        # Pas plus d'une ligne vide consécutive.
+
+
+# **Macros**
+MacroBlockBegin: ""           # Style pour les macros au début des blocs.
+MacroBlockEnd: ""             # Style pour les macros à la fin des blocs.

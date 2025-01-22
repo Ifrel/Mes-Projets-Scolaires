@@ -1,0 +1,4 @@
+!\ /trop_de_section_headers|not_an_ELF_file|empty_file/ fich1.delete fich2.delete arm-none-eabi-readelf -S $test_file 2>&1 | sed -r "$sed_string" | head -n -5 &> $fich1; \
+./custom_readelf -S $test_file &> $temp_file; echo $?; sed -r "$sed_string" $temp_file &> $fich2
+/trop_de_section_headers|not_an_ELF_file|empty_file/ fich1.delete fich2.delete arm-none-eabi-readelf -S $test_file 2>&1 | sed -r "$sed_string" | tail -n 1 &> $fich1; \
+./custom_readelf -S $test_file &> $temp_file; echo $?; sed -r "$sed_string" $temp_file &> $fich2

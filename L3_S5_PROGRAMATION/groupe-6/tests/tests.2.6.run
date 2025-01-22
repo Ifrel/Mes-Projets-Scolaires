@@ -1,0 +1,2 @@
+/.*/ fich1.delete fich2.delete cat $test_file 2>&1 | sed -r "$sed_string" &> $fich1; \
+./reimplantation -e 6 ${test_file%.*.dump}.data -o $temp_file 2> $fich2; ex=$? && echo $ex; [ $ex -eq 0 ] && ./keep_infos.sh -d $fich2 -e 6 -f $temp_file &> /dev/null; sed -i "$sed_string" $fich2 &> /dev/null

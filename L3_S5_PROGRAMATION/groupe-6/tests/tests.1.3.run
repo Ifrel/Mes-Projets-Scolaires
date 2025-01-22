@@ -1,0 +1,20 @@
+/.*/ fich1.delete fich2.delete arm-none-eabi-readelf -x .text $test_file 2>&1 | sed -r 's/ NOTE: This section has relocations against it, but these have NOT been applied to this dump.//g' | sed -r 's/!//g' | sed -r 's/!//g' | sed -r 's/!//g' | sed -r "$sed_string" > $fich1; \
+./custom_readelf -x .text $test_file 2>&1 | sed -r 's/!//g' &> $temp_file; echo $?; sed -r "$sed_string" $temp_file &> $fich2
+/.*/ fich1.delete fich2.delete arm-none-eabi-readelf -x .strtab $test_file 2>&1 | sed -r 's/ NOTE: This section has relocations against it, but these have NOT been applied to this dump.//g' | sed -r 's/!//g' | sed -r "$sed_string" > $fich1; \
+./custom_readelf -x .strtab $test_file 2>&1 | sed -r 's/!//g' &> $temp_file; echo $?; sed -r "$sed_string" $temp_file &> $fich2
+/.*/ fich1.delete fich2.delete arm-none-eabi-readelf -x .symtab  $test_file 2>&1 | sed -r 's/ NOTE: This section has relocations against it, but these have NOT been applied to this dump.//g' | sed -r 's/!//g' | sed -r "$sed_string" > $fich1; \
+./custom_readelf -x .symtab $test_file 2>&1 | sed -r 's/!//g' &> $temp_file; echo $?; sed -r "$sed_string" $temp_file &> $fich2
+/.*/ fich1.delete fich2.delete arm-none-eabi-readelf -x .shstrtab $test_file 2>&1 | sed -r 's/ NOTE: This section has relocations against it, but these have NOT been applied to this dump.//g' | sed -r 's/!//g' | sed -r "$sed_string" > $fich1; \
+./custom_readelf -x .shstrtab $test_file 2>&1 | sed -r 's/!//g' &> $temp_file; echo $?; sed -r "$sed_string" $temp_file &> $fich2
+/.*/ fich1.delete fich2.delete arm-none-eabi-readelf -x 1 $test_file 2>&1 | sed -r 's/ NOTE: This section has relocations against it, but these have NOT been applied to this dump.//g' | sed -r 's/!//g' | sed -r "$sed_string" > $fich1; \
+./custom_readelf -x 1 $test_file 2>&1 | sed -r 's/!//g' &> $temp_file; echo $?; sed -r "$sed_string" $temp_file &> $fich2
+/.*/ fich1.delete fich2.delete arm-none-eabi-readelf -x 8 $test_file 2>&1  | sed -r 's/ NOTE: This section has relocations against it, but these have NOT been applied to this dump.//g' | sed -r 's/!//g' | sed -r "$sed_string" > $fich1; \
+./custom_readelf -x 8 $test_file 2>&1 | sed -r 's/!//g' &> $temp_file; echo $?; sed -r "$sed_string" $temp_file &> $fich2
+/.*/ fich1.delete fich2.delete arm-none-eabi-readelf -x 17  $test_file 2>&1 | sed -r 's/ NOTE: This section has relocations against it, but these have NOT been applied to this dump.//g' | sed -r 's/!//g' | sed -r "$sed_string" > $fich1; \
+./custom_readelf -x 17 $test_file 2>&1 | sed -r 's/!//g' &> $temp_file; echo $?; sed -r "$sed_string" $temp_file &> $fich2
+/.*/ fich1.delete fich2.delete arm-none-eabi-readelf -x 0 $test_file 2>&1 | sed -r 's/ NOTE: This section has relocations against it, but these have NOT been applied to this dump.//g' | sed -r 's/!//g' | sed -r "$sed_string" > $fich1; \
+./custom_readelf -x 0 $test_file 2>&1 | sed -r 's/!//g' &> $temp_file; echo $?; sed -r "$sed_string" $temp_file &> $fich2
+/.*/ fich1.delete fich2.delete arm-none-eabi-readelf -x -404 $test_file 2>&1 | sed -r 's/ NOTE: This section has relocations against it, but these have NOT been applied to this dump.//g' | sed -r 's/!//g' | sed -r "$sed_string" > $fich1; \
+./custom_readelf -x -404 $test_file 2>&1 | sed -r 's/!//g' &> $temp_file; echo $?; sed -r "$sed_string" $temp_file &> $fich2
+/.*/ fich1.delete fich2.delete arm-none-eabi-readelf -x .rms $test_file 2>&1 | sed -r 's/ NOTE: This section has relocations against it, but these have NOT been applied to this dump.//g' | sed -r 's/!//g' | sed -r "$sed_string" > $fich1; \
+./custom_readelf -x .rms $test_file 2>&1 | sed -r 's/!//g' &> $temp_file; echo $?; sed -r "$sed_string" $temp_file &> $fich2

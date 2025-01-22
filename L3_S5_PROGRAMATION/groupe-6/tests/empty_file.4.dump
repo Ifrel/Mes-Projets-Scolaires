@@ -1,0 +1,1 @@
+readelf: Error: tests/empty_file.data: Failed to read file's magic number

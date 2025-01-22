@@ -1,0 +1,2 @@
+/.*/ fich1.delete fich2.delete arm-none-eabi-readelf -r $test_file 2>&1 | sed -r "$sed_string" &> $fich1; \
+./custom_readelf -r $test_file &> $temp_file; echo $?; sed -r "$sed_string" $temp_file &> $fich2
