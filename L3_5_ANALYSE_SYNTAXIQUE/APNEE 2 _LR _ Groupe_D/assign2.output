@@ -1,0 +1,836 @@
+Terminaux inutilisés dans la grammaire
+
+    INTERO
+    COLON
+
+
+Grammaire
+
+    0 $accept: Programme $end
+
+    1 Programme: ListeInstr
+
+    2 ListeInstr: ε
+    3           | ListeInstr Instruction
+
+    4 Instruction: ExprAffectation SEMICOLON
+
+    5 ExprAffectation: VAR ASSIGN ExprAffectation
+    6                | Expression
+
+    7 Expression: Expression PLUS Expression
+    8           | Expression MINUS Expression
+    9           | Expression MULT Expression
+   10           | Expression DIV Expression
+   11           | Expression MODULO Expression
+   12           | Expression EXPON Expression
+   13           | COS Expression
+   14           | SIN Expression
+   15           | PLUS Expression
+   16           | MINUS Expression
+   17           | LB ExprAffectation RB
+   18           | FLOTTANT
+   19           | PI
+   20           | VAR
+
+
+Terminaux, suivis des règles où ils apparaissent
+
+    $end (0) 0
+    error (256)
+    FLOTTANT <valeur_flottante> (258) 18
+    PI <valeur_flottante> (259) 19
+    VAR <texte> (260) 5 20
+    PLUS (261) 7 15
+    MINUS (262) 8 16
+    MULT (263) 9
+    DIV (264) 10
+    EXPON (265) 12
+    SEMICOLON (266) 4
+    LB (267) 17
+    RB (268) 17
+    MODULO (269) 11
+    ASSIGN (270) 5
+    INTERO (271)
+    COLON (272)
+    COS (273) 13
+    SIN (274) 14
+    UPLUS (275)
+    UMINUS (276)
+
+
+Non-terminaux, suivis des règles où ils apparaissent
+
+    $accept (22)
+        à gauche: 0
+    Programme <valeur_flottante> (23)
+        à gauche: 1
+        à droite: 0
+    ListeInstr <valeur_flottante> (24)
+        à gauche: 2 3
+        à droite: 1 3
+    Instruction <valeur_flottante> (25)
+        à gauche: 4
+        à droite: 3
+    ExprAffectation <valeur_flottante> (26)
+        à gauche: 5 6
+        à droite: 4 5 17
+    Expression <valeur_flottante> (27)
+        à gauche: 7 8 9 10 11 12 13 14 15 16 17 18 19 20
+        à droite: 6 7 8 9 10 11 12 13 14 15 16
+
+
+État 0
+
+    0 $accept: • Programme $end
+    1 Programme: • ListeInstr
+    2 ListeInstr: ε •
+    3           | • ListeInstr Instruction
+
+    $défaut  réduction par utilisation de la règle 2 (ListeInstr)
+
+    Programme   aller à l'état 1
+    ListeInstr  aller à l'état 2
+
+
+État 1
+
+    0 $accept: Programme • $end
+
+    $end  décalage et aller à l'état 3
+
+
+État 2
+
+    1 Programme: ListeInstr •  [$end]
+    3 ListeInstr: ListeInstr • Instruction
+    4 Instruction: • ExprAffectation SEMICOLON
+    5 ExprAffectation: • VAR ASSIGN ExprAffectation
+    6                | • Expression
+    7 Expression: • Expression PLUS Expression
+    8           | • Expression MINUS Expression
+    9           | • Expression MULT Expression
+   10           | • Expression DIV Expression
+   11           | • Expression MODULO Expression
+   12           | • Expression EXPON Expression
+   13           | • COS Expression
+   14           | • SIN Expression
+   15           | • PLUS Expression
+   16           | • MINUS Expression
+   17           | • LB ExprAffectation RB
+   18           | • FLOTTANT
+   19           | • PI
+   20           | • VAR
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 6
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    $défaut  réduction par utilisation de la règle 1 (Programme)
+
+    Instruction      aller à l'état 12
+    ExprAffectation  aller à l'état 13
+    Expression       aller à l'état 14
+
+
+État 3
+
+    0 $accept: Programme $end •
+
+    $défaut  accepter
+
+
+État 4
+
+   18 Expression: FLOTTANT •
+
+    $défaut  réduction par utilisation de la règle 18 (Expression)
+
+
+État 5
+
+   19 Expression: PI •
+
+    $défaut  réduction par utilisation de la règle 19 (Expression)
+
+
+État 6
+
+    5 ExprAffectation: VAR • ASSIGN ExprAffectation
+   20 Expression: VAR •  [PLUS, MINUS, MULT, DIV, EXPON, SEMICOLON, RB, MODULO]
+
+    ASSIGN  décalage et aller à l'état 15
+
+    $défaut  réduction par utilisation de la règle 20 (Expression)
+
+
+État 7
+
+    7 Expression: • Expression PLUS Expression
+    8           | • Expression MINUS Expression
+    9           | • Expression MULT Expression
+   10           | • Expression DIV Expression
+   11           | • Expression MODULO Expression
+   12           | • Expression EXPON Expression
+   13           | • COS Expression
+   14           | • SIN Expression
+   15           | • PLUS Expression
+   15           | PLUS • Expression
+   16           | • MINUS Expression
+   17           | • LB ExprAffectation RB
+   18           | • FLOTTANT
+   19           | • PI
+   20           | • VAR
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 16
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    Expression  aller à l'état 17
+
+
+État 8
+
+    7 Expression: • Expression PLUS Expression
+    8           | • Expression MINUS Expression
+    9           | • Expression MULT Expression
+   10           | • Expression DIV Expression
+   11           | • Expression MODULO Expression
+   12           | • Expression EXPON Expression
+   13           | • COS Expression
+   14           | • SIN Expression
+   15           | • PLUS Expression
+   16           | • MINUS Expression
+   16           | MINUS • Expression
+   17           | • LB ExprAffectation RB
+   18           | • FLOTTANT
+   19           | • PI
+   20           | • VAR
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 16
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    Expression  aller à l'état 18
+
+
+État 9
+
+    5 ExprAffectation: • VAR ASSIGN ExprAffectation
+    6                | • Expression
+    7 Expression: • Expression PLUS Expression
+    8           | • Expression MINUS Expression
+    9           | • Expression MULT Expression
+   10           | • Expression DIV Expression
+   11           | • Expression MODULO Expression
+   12           | • Expression EXPON Expression
+   13           | • COS Expression
+   14           | • SIN Expression
+   15           | • PLUS Expression
+   16           | • MINUS Expression
+   17           | • LB ExprAffectation RB
+   17           | LB • ExprAffectation RB
+   18           | • FLOTTANT
+   19           | • PI
+   20           | • VAR
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 6
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    ExprAffectation  aller à l'état 19
+    Expression       aller à l'état 14
+
+
+État 10
+
+    7 Expression: • Expression PLUS Expression
+    8           | • Expression MINUS Expression
+    9           | • Expression MULT Expression
+   10           | • Expression DIV Expression
+   11           | • Expression MODULO Expression
+   12           | • Expression EXPON Expression
+   13           | • COS Expression
+   13           | COS • Expression
+   14           | • SIN Expression
+   15           | • PLUS Expression
+   16           | • MINUS Expression
+   17           | • LB ExprAffectation RB
+   18           | • FLOTTANT
+   19           | • PI
+   20           | • VAR
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 16
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    Expression  aller à l'état 20
+
+
+État 11
+
+    7 Expression: • Expression PLUS Expression
+    8           | • Expression MINUS Expression
+    9           | • Expression MULT Expression
+   10           | • Expression DIV Expression
+   11           | • Expression MODULO Expression
+   12           | • Expression EXPON Expression
+   13           | • COS Expression
+   14           | • SIN Expression
+   14           | SIN • Expression
+   15           | • PLUS Expression
+   16           | • MINUS Expression
+   17           | • LB ExprAffectation RB
+   18           | • FLOTTANT
+   19           | • PI
+   20           | • VAR
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 16
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    Expression  aller à l'état 21
+
+
+État 12
+
+    3 ListeInstr: ListeInstr Instruction •
+
+    $défaut  réduction par utilisation de la règle 3 (ListeInstr)
+
+
+État 13
+
+    4 Instruction: ExprAffectation • SEMICOLON
+
+    SEMICOLON  décalage et aller à l'état 22
+
+
+État 14
+
+    6 ExprAffectation: Expression •  [SEMICOLON, RB]
+    7 Expression: Expression • PLUS Expression
+    8           | Expression • MINUS Expression
+    9           | Expression • MULT Expression
+   10           | Expression • DIV Expression
+   11           | Expression • MODULO Expression
+   12           | Expression • EXPON Expression
+
+    PLUS    décalage et aller à l'état 23
+    MINUS   décalage et aller à l'état 24
+    MULT    décalage et aller à l'état 25
+    DIV     décalage et aller à l'état 26
+    EXPON   décalage et aller à l'état 27
+    MODULO  décalage et aller à l'état 28
+
+    $défaut  réduction par utilisation de la règle 6 (ExprAffectation)
+
+
+État 15
+
+    5 ExprAffectation: • VAR ASSIGN ExprAffectation
+    5                | VAR ASSIGN • ExprAffectation
+    6                | • Expression
+    7 Expression: • Expression PLUS Expression
+    8           | • Expression MINUS Expression
+    9           | • Expression MULT Expression
+   10           | • Expression DIV Expression
+   11           | • Expression MODULO Expression
+   12           | • Expression EXPON Expression
+   13           | • COS Expression
+   14           | • SIN Expression
+   15           | • PLUS Expression
+   16           | • MINUS Expression
+   17           | • LB ExprAffectation RB
+   18           | • FLOTTANT
+   19           | • PI
+   20           | • VAR
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 6
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    ExprAffectation  aller à l'état 29
+    Expression       aller à l'état 14
+
+
+État 16
+
+   20 Expression: VAR •
+
+    $défaut  réduction par utilisation de la règle 20 (Expression)
+
+
+État 17
+
+    7 Expression: Expression • PLUS Expression
+    8           | Expression • MINUS Expression
+    9           | Expression • MULT Expression
+   10           | Expression • DIV Expression
+   11           | Expression • MODULO Expression
+   12           | Expression • EXPON Expression
+   15           | PLUS Expression •  [PLUS, MINUS, MULT, DIV, EXPON, SEMICOLON, RB, MODULO]
+
+    $défaut  réduction par utilisation de la règle 15 (Expression)
+
+    Conflit entre la règle 15 et le jeton PLUS résolu par réduction (PLUS < UPLUS).
+    Conflit entre la règle 15 et le jeton MINUS résolu par réduction (MINUS < UPLUS).
+    Conflit entre la règle 15 et le jeton MULT résolu par réduction (MULT < UPLUS).
+    Conflit entre la règle 15 et le jeton DIV résolu par réduction (DIV < UPLUS).
+    Conflit entre la règle 15 et le jeton EXPON résolu par réduction (EXPON < UPLUS).
+    Conflit entre la règle 15 et le jeton MODULO résolu par réduction (MODULO < UPLUS).
+
+
+État 18
+
+    7 Expression: Expression • PLUS Expression
+    8           | Expression • MINUS Expression
+    9           | Expression • MULT Expression
+   10           | Expression • DIV Expression
+   11           | Expression • MODULO Expression
+   12           | Expression • EXPON Expression
+   16           | MINUS Expression •  [PLUS, MINUS, MULT, DIV, EXPON, SEMICOLON, RB, MODULO]
+
+    $défaut  réduction par utilisation de la règle 16 (Expression)
+
+    Conflit entre la règle 16 et le jeton PLUS résolu par réduction (PLUS < UMINUS).
+    Conflit entre la règle 16 et le jeton MINUS résolu par réduction (MINUS < UMINUS).
+    Conflit entre la règle 16 et le jeton MULT résolu par réduction (MULT < UMINUS).
+    Conflit entre la règle 16 et le jeton DIV résolu par réduction (DIV < UMINUS).
+    Conflit entre la règle 16 et le jeton EXPON résolu par réduction (EXPON < UMINUS).
+    Conflit entre la règle 16 et le jeton MODULO résolu par réduction (MODULO < UMINUS).
+
+
+État 19
+
+   17 Expression: LB ExprAffectation • RB
+
+    RB  décalage et aller à l'état 30
+
+
+État 20
+
+    7 Expression: Expression • PLUS Expression
+    8           | Expression • MINUS Expression
+    9           | Expression • MULT Expression
+   10           | Expression • DIV Expression
+   11           | Expression • MODULO Expression
+   12           | Expression • EXPON Expression
+   13           | COS Expression •  [SEMICOLON, RB]
+
+    PLUS    décalage et aller à l'état 23
+    MINUS   décalage et aller à l'état 24
+    MULT    décalage et aller à l'état 25
+    DIV     décalage et aller à l'état 26
+    EXPON   décalage et aller à l'état 27
+    MODULO  décalage et aller à l'état 28
+
+    $défaut  réduction par utilisation de la règle 13 (Expression)
+
+    Conflit entre la règle 13 et le jeton PLUS résolu par décalage (COS < PLUS).
+    Conflit entre la règle 13 et le jeton MINUS résolu par décalage (COS < MINUS).
+    Conflit entre la règle 13 et le jeton MULT résolu par décalage (COS < MULT).
+    Conflit entre la règle 13 et le jeton DIV résolu par décalage (COS < DIV).
+    Conflit entre la règle 13 et le jeton EXPON résolu par décalage (COS < EXPON).
+    Conflit entre la règle 13 et le jeton MODULO résolu par décalage (COS < MODULO).
+
+
+État 21
+
+    7 Expression: Expression • PLUS Expression
+    8           | Expression • MINUS Expression
+    9           | Expression • MULT Expression
+   10           | Expression • DIV Expression
+   11           | Expression • MODULO Expression
+   12           | Expression • EXPON Expression
+   14           | SIN Expression •  [SEMICOLON, RB]
+
+    PLUS    décalage et aller à l'état 23
+    MINUS   décalage et aller à l'état 24
+    MULT    décalage et aller à l'état 25
+    DIV     décalage et aller à l'état 26
+    EXPON   décalage et aller à l'état 27
+    MODULO  décalage et aller à l'état 28
+
+    $défaut  réduction par utilisation de la règle 14 (Expression)
+
+    Conflit entre la règle 14 et le jeton PLUS résolu par décalage (SIN < PLUS).
+    Conflit entre la règle 14 et le jeton MINUS résolu par décalage (SIN < MINUS).
+    Conflit entre la règle 14 et le jeton MULT résolu par décalage (SIN < MULT).
+    Conflit entre la règle 14 et le jeton DIV résolu par décalage (SIN < DIV).
+    Conflit entre la règle 14 et le jeton EXPON résolu par décalage (SIN < EXPON).
+    Conflit entre la règle 14 et le jeton MODULO résolu par décalage (SIN < MODULO).
+
+
+État 22
+
+    4 Instruction: ExprAffectation SEMICOLON •
+
+    $défaut  réduction par utilisation de la règle 4 (Instruction)
+
+
+État 23
+
+    7 Expression: • Expression PLUS Expression
+    7           | Expression PLUS • Expression
+    8           | • Expression MINUS Expression
+    9           | • Expression MULT Expression
+   10           | • Expression DIV Expression
+   11           | • Expression MODULO Expression
+   12           | • Expression EXPON Expression
+   13           | • COS Expression
+   14           | • SIN Expression
+   15           | • PLUS Expression
+   16           | • MINUS Expression
+   17           | • LB ExprAffectation RB
+   18           | • FLOTTANT
+   19           | • PI
+   20           | • VAR
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 16
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    Expression  aller à l'état 31
+
+
+État 24
+
+    7 Expression: • Expression PLUS Expression
+    8           | • Expression MINUS Expression
+    8           | Expression MINUS • Expression
+    9           | • Expression MULT Expression
+   10           | • Expression DIV Expression
+   11           | • Expression MODULO Expression
+   12           | • Expression EXPON Expression
+   13           | • COS Expression
+   14           | • SIN Expression
+   15           | • PLUS Expression
+   16           | • MINUS Expression
+   17           | • LB ExprAffectation RB
+   18           | • FLOTTANT
+   19           | • PI
+   20           | • VAR
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 16
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    Expression  aller à l'état 32
+
+
+État 25
+
+    7 Expression: • Expression PLUS Expression
+    8           | • Expression MINUS Expression
+    9           | • Expression MULT Expression
+    9           | Expression MULT • Expression
+   10           | • Expression DIV Expression
+   11           | • Expression MODULO Expression
+   12           | • Expression EXPON Expression
+   13           | • COS Expression
+   14           | • SIN Expression
+   15           | • PLUS Expression
+   16           | • MINUS Expression
+   17           | • LB ExprAffectation RB
+   18           | • FLOTTANT
+   19           | • PI
+   20           | • VAR
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 16
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    Expression  aller à l'état 33
+
+
+État 26
+
+    7 Expression: • Expression PLUS Expression
+    8           | • Expression MINUS Expression
+    9           | • Expression MULT Expression
+   10           | • Expression DIV Expression
+   10           | Expression DIV • Expression
+   11           | • Expression MODULO Expression
+   12           | • Expression EXPON Expression
+   13           | • COS Expression
+   14           | • SIN Expression
+   15           | • PLUS Expression
+   16           | • MINUS Expression
+   17           | • LB ExprAffectation RB
+   18           | • FLOTTANT
+   19           | • PI
+   20           | • VAR
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 16
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    Expression  aller à l'état 34
+
+
+État 27
+
+    7 Expression: • Expression PLUS Expression
+    8           | • Expression MINUS Expression
+    9           | • Expression MULT Expression
+   10           | • Expression DIV Expression
+   11           | • Expression MODULO Expression
+   12           | • Expression EXPON Expression
+   12           | Expression EXPON • Expression
+   13           | • COS Expression
+   14           | • SIN Expression
+   15           | • PLUS Expression
+   16           | • MINUS Expression
+   17           | • LB ExprAffectation RB
+   18           | • FLOTTANT
+   19           | • PI
+   20           | • VAR
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 16
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    Expression  aller à l'état 35
+
+
+État 28
+
+    7 Expression: • Expression PLUS Expression
+    8           | • Expression MINUS Expression
+    9           | • Expression MULT Expression
+   10           | • Expression DIV Expression
+   11           | • Expression MODULO Expression
+   11           | Expression MODULO • Expression
+   12           | • Expression EXPON Expression
+   13           | • COS Expression
+   14           | • SIN Expression
+   15           | • PLUS Expression
+   16           | • MINUS Expression
+   17           | • LB ExprAffectation RB
+   18           | • FLOTTANT
+   19           | • PI
+   20           | • VAR
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 16
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    Expression  aller à l'état 36
+
+
+État 29
+
+    5 ExprAffectation: VAR ASSIGN ExprAffectation •
+
+    $défaut  réduction par utilisation de la règle 5 (ExprAffectation)
+
+
+État 30
+
+   17 Expression: LB ExprAffectation RB •
+
+    $défaut  réduction par utilisation de la règle 17 (Expression)
+
+
+État 31
+
+    7 Expression: Expression • PLUS Expression
+    7           | Expression PLUS Expression •  [PLUS, MINUS, SEMICOLON, RB]
+    8           | Expression • MINUS Expression
+    9           | Expression • MULT Expression
+   10           | Expression • DIV Expression
+   11           | Expression • MODULO Expression
+   12           | Expression • EXPON Expression
+
+    MULT    décalage et aller à l'état 25
+    DIV     décalage et aller à l'état 26
+    EXPON   décalage et aller à l'état 27
+    MODULO  décalage et aller à l'état 28
+
+    $défaut  réduction par utilisation de la règle 7 (Expression)
+
+    Conflit entre la règle 7 et le jeton PLUS résolu par réduction (%left PLUS).
+    Conflit entre la règle 7 et le jeton MINUS résolu par réduction (%left MINUS).
+    Conflit entre la règle 7 et le jeton MULT résolu par décalage (PLUS < MULT).
+    Conflit entre la règle 7 et le jeton DIV résolu par décalage (PLUS < DIV).
+    Conflit entre la règle 7 et le jeton EXPON résolu par décalage (PLUS < EXPON).
+    Conflit entre la règle 7 et le jeton MODULO résolu par décalage (PLUS < MODULO).
+
+
+État 32
+
+    7 Expression: Expression • PLUS Expression
+    8           | Expression • MINUS Expression
+    8           | Expression MINUS Expression •  [PLUS, MINUS, SEMICOLON, RB]
+    9           | Expression • MULT Expression
+   10           | Expression • DIV Expression
+   11           | Expression • MODULO Expression
+   12           | Expression • EXPON Expression
+
+    MULT    décalage et aller à l'état 25
+    DIV     décalage et aller à l'état 26
+    EXPON   décalage et aller à l'état 27
+    MODULO  décalage et aller à l'état 28
+
+    $défaut  réduction par utilisation de la règle 8 (Expression)
+
+    Conflit entre la règle 8 et le jeton PLUS résolu par réduction (%left PLUS).
+    Conflit entre la règle 8 et le jeton MINUS résolu par réduction (%left MINUS).
+    Conflit entre la règle 8 et le jeton MULT résolu par décalage (MINUS < MULT).
+    Conflit entre la règle 8 et le jeton DIV résolu par décalage (MINUS < DIV).
+    Conflit entre la règle 8 et le jeton EXPON résolu par décalage (MINUS < EXPON).
+    Conflit entre la règle 8 et le jeton MODULO résolu par décalage (MINUS < MODULO).
+
+
+État 33
+
+    7 Expression: Expression • PLUS Expression
+    8           | Expression • MINUS Expression
+    9           | Expression • MULT Expression
+    9           | Expression MULT Expression •  [PLUS, MINUS, MULT, DIV, SEMICOLON, RB, MODULO]
+   10           | Expression • DIV Expression
+   11           | Expression • MODULO Expression
+   12           | Expression • EXPON Expression
+
+    EXPON  décalage et aller à l'état 27
+
+    $défaut  réduction par utilisation de la règle 9 (Expression)
+
+    Conflit entre la règle 9 et le jeton PLUS résolu par réduction (PLUS < MULT).
+    Conflit entre la règle 9 et le jeton MINUS résolu par réduction (MINUS < MULT).
+    Conflit entre la règle 9 et le jeton MULT résolu par réduction (%left MULT).
+    Conflit entre la règle 9 et le jeton DIV résolu par réduction (%left DIV).
+    Conflit entre la règle 9 et le jeton EXPON résolu par décalage (MULT < EXPON).
+    Conflit entre la règle 9 et le jeton MODULO résolu par réduction (%left MODULO).
+
+
+État 34
+
+    7 Expression: Expression • PLUS Expression
+    8           | Expression • MINUS Expression
+    9           | Expression • MULT Expression
+   10           | Expression • DIV Expression
+   10           | Expression DIV Expression •  [PLUS, MINUS, MULT, DIV, SEMICOLON, RB, MODULO]
+   11           | Expression • MODULO Expression
+   12           | Expression • EXPON Expression
+
+    EXPON  décalage et aller à l'état 27
+
+    $défaut  réduction par utilisation de la règle 10 (Expression)
+
+    Conflit entre la règle 10 et le jeton PLUS résolu par réduction (PLUS < DIV).
+    Conflit entre la règle 10 et le jeton MINUS résolu par réduction (MINUS < DIV).
+    Conflit entre la règle 10 et le jeton MULT résolu par réduction (%left MULT).
+    Conflit entre la règle 10 et le jeton DIV résolu par réduction (%left DIV).
+    Conflit entre la règle 10 et le jeton EXPON résolu par décalage (DIV < EXPON).
+    Conflit entre la règle 10 et le jeton MODULO résolu par réduction (%left MODULO).
+
+
+État 35
+
+    7 Expression: Expression • PLUS Expression
+    8           | Expression • MINUS Expression
+    9           | Expression • MULT Expression
+   10           | Expression • DIV Expression
+   11           | Expression • MODULO Expression
+   12           | Expression • EXPON Expression
+   12           | Expression EXPON Expression •  [PLUS, MINUS, MULT, DIV, SEMICOLON, RB, MODULO]
+
+    EXPON  décalage et aller à l'état 27
+
+    $défaut  réduction par utilisation de la règle 12 (Expression)
+
+    Conflit entre la règle 12 et le jeton PLUS résolu par réduction (PLUS < EXPON).
+    Conflit entre la règle 12 et le jeton MINUS résolu par réduction (MINUS < EXPON).
+    Conflit entre la règle 12 et le jeton MULT résolu par réduction (MULT < EXPON).
+    Conflit entre la règle 12 et le jeton DIV résolu par réduction (DIV < EXPON).
+    Conflit entre la règle 12 et le jeton EXPON résolu par décalage (%right EXPON).
+    Conflit entre la règle 12 et le jeton MODULO résolu par réduction (MODULO < EXPON).
+
+
+État 36
+
+    7 Expression: Expression • PLUS Expression
+    8           | Expression • MINUS Expression
+    9           | Expression • MULT Expression
+   10           | Expression • DIV Expression
+   11           | Expression • MODULO Expression
+   11           | Expression MODULO Expression •  [PLUS, MINUS, MULT, DIV, SEMICOLON, RB, MODULO]
+   12           | Expression • EXPON Expression
+
+    EXPON  décalage et aller à l'état 27
+
+    $défaut  réduction par utilisation de la règle 11 (Expression)
+
+    Conflit entre la règle 11 et le jeton PLUS résolu par réduction (PLUS < MODULO).
+    Conflit entre la règle 11 et le jeton MINUS résolu par réduction (MINUS < MODULO).
+    Conflit entre la règle 11 et le jeton MULT résolu par réduction (%left MULT).
+    Conflit entre la règle 11 et le jeton DIV résolu par réduction (%left DIV).
+    Conflit entre la règle 11 et le jeton EXPON résolu par décalage (MODULO < EXPON).
+    Conflit entre la règle 11 et le jeton MODULO résolu par réduction (%left MODULO).

@@ -1,0 +1,3 @@
+a = cos 0 + 2;
+b = cos(0 + 2);
+c = sin 0 + cos 0;

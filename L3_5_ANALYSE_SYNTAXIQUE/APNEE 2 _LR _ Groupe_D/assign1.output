@@ -1,0 +1,1110 @@
+Terminaux inutilisés dans la grammaire
+
+    INTERO
+    COLON
+
+
+État 16 conflits: 3 décalage/réduction
+État 18 conflits: 1 décalage/réduction
+État 25 conflits: 2 décalage/réduction
+État 26 conflits: 2 décalage/réduction
+État 36 conflits: 3 décalage/réduction
+État 37 conflits: 3 décalage/réduction
+
+
+Grammaire
+
+    0 $accept: Programme $end
+
+    1 Programme: ListeInstr
+
+    2 ListeInstr: ε
+    3           | ListeInstr Instruction
+
+    4 Instruction: ExprAffectation SEMICOLON
+
+    5 ExprAffectation: VAR ASSIGN ExprAffectation
+    6                | Expression
+
+    7 Expression: ExpressionSomme
+
+    8 ExpressionSomme: ExpressionSomme PLUS Terme
+    9                | ExpressionSomme MINUS Terme
+   10                | Terme
+
+   11 Terme: Terme MULT Puissance
+   12      | Terme DIV Puissance
+   13      | Terme MODULO Puissance
+   14      | Puissance
+
+   15 Puissance: Unaire EXPON Puissance
+   16          | Unaire
+
+   17 Unaire: MINUS Unaire
+   18       | PLUS Unaire
+   19       | Primaire
+
+   20 Primaire: COS ExpressionSomme
+   21         | SIN ExpressionSomme
+   22         | FLOTTANT
+   23         | PI
+   24         | VAR
+   25         | LB ExprAffectation RB
+
+
+Terminaux, suivis des règles où ils apparaissent
+
+    $end (0) 0
+    error (256)
+    FLOTTANT <valeur_flottante> (258) 22
+    PI <valeur_flottante> (259) 23
+    VAR <texte> (260) 5 24
+    PLUS (261) 8 18
+    MINUS (262) 9 17
+    MULT (263) 11
+    DIV (264) 12
+    EXPON (265) 15
+    SEMICOLON (266) 4
+    LB (267) 25
+    RB (268) 25
+    MODULO (269) 13
+    ASSIGN (270) 5
+    INTERO (271)
+    COLON (272)
+    COS (273) 20
+    SIN (274) 21
+
+
+Non-terminaux, suivis des règles où ils apparaissent
+
+    $accept (20)
+        à gauche: 0
+    Programme <valeur_flottante> (21)
+        à gauche: 1
+        à droite: 0
+    ListeInstr <valeur_flottante> (22)
+        à gauche: 2 3
+        à droite: 1 3
+    Instruction <valeur_flottante> (23)
+        à gauche: 4
+        à droite: 3
+    ExprAffectation <valeur_flottante> (24)
+        à gauche: 5 6
+        à droite: 4 5 25
+    Expression <valeur_flottante> (25)
+        à gauche: 7
+        à droite: 6
+    ExpressionSomme <valeur_flottante> (26)
+        à gauche: 8 9 10
+        à droite: 7 8 9 20 21
+    Terme <valeur_flottante> (27)
+        à gauche: 11 12 13 14
+        à droite: 8 9 10 11 12 13
+    Puissance <valeur_flottante> (28)
+        à gauche: 15 16
+        à droite: 11 12 13 14 15
+    Unaire <valeur_flottante> (29)
+        à gauche: 17 18 19
+        à droite: 15 16 17 18
+    Primaire <valeur_flottante> (30)
+        à gauche: 20 21 22 23 24 25
+        à droite: 19
+
+
+État 0
+
+    0 $accept: • Programme $end
+    1 Programme: • ListeInstr
+    2 ListeInstr: ε •
+    3           | • ListeInstr Instruction
+
+    $défaut  réduction par utilisation de la règle 2 (ListeInstr)
+
+    Programme   aller à l'état 1
+    ListeInstr  aller à l'état 2
+
+
+État 1
+
+    0 $accept: Programme • $end
+
+    $end  décalage et aller à l'état 3
+
+
+État 2
+
+    1 Programme: ListeInstr •  [$end]
+    3 ListeInstr: ListeInstr • Instruction
+    4 Instruction: • ExprAffectation SEMICOLON
+    5 ExprAffectation: • VAR ASSIGN ExprAffectation
+    6                | • Expression
+    7 Expression: • ExpressionSomme
+    8 ExpressionSomme: • ExpressionSomme PLUS Terme
+    9                | • ExpressionSomme MINUS Terme
+   10                | • Terme
+   11 Terme: • Terme MULT Puissance
+   12      | • Terme DIV Puissance
+   13      | • Terme MODULO Puissance
+   14      | • Puissance
+   15 Puissance: • Unaire EXPON Puissance
+   16          | • Unaire
+   17 Unaire: • MINUS Unaire
+   18       | • PLUS Unaire
+   19       | • Primaire
+   20 Primaire: • COS ExpressionSomme
+   21         | • SIN ExpressionSomme
+   22         | • FLOTTANT
+   23         | • PI
+   24         | • VAR
+   25         | • LB ExprAffectation RB
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 6
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    $défaut  réduction par utilisation de la règle 1 (Programme)
+
+    Instruction      aller à l'état 12
+    ExprAffectation  aller à l'état 13
+    Expression       aller à l'état 14
+    ExpressionSomme  aller à l'état 15
+    Terme            aller à l'état 16
+    Puissance        aller à l'état 17
+    Unaire           aller à l'état 18
+    Primaire         aller à l'état 19
+
+
+État 3
+
+    0 $accept: Programme $end •
+
+    $défaut  accepter
+
+
+État 4
+
+   22 Primaire: FLOTTANT •
+
+    $défaut  réduction par utilisation de la règle 22 (Primaire)
+
+
+État 5
+
+   23 Primaire: PI •
+
+    $défaut  réduction par utilisation de la règle 23 (Primaire)
+
+
+État 6
+
+    5 ExprAffectation: VAR • ASSIGN ExprAffectation
+   24 Primaire: VAR •  [PLUS, MINUS, MULT, DIV, EXPON, SEMICOLON, RB, MODULO]
+
+    ASSIGN  décalage et aller à l'état 20
+
+    $défaut  réduction par utilisation de la règle 24 (Primaire)
+
+
+État 7
+
+   17 Unaire: • MINUS Unaire
+   18       | • PLUS Unaire
+   18       | PLUS • Unaire
+   19       | • Primaire
+   20 Primaire: • COS ExpressionSomme
+   21         | • SIN ExpressionSomme
+   22         | • FLOTTANT
+   23         | • PI
+   24         | • VAR
+   25         | • LB ExprAffectation RB
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 21
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    Unaire    aller à l'état 22
+    Primaire  aller à l'état 19
+
+
+État 8
+
+   17 Unaire: • MINUS Unaire
+   17       | MINUS • Unaire
+   18       | • PLUS Unaire
+   19       | • Primaire
+   20 Primaire: • COS ExpressionSomme
+   21         | • SIN ExpressionSomme
+   22         | • FLOTTANT
+   23         | • PI
+   24         | • VAR
+   25         | • LB ExprAffectation RB
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 21
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    Unaire    aller à l'état 23
+    Primaire  aller à l'état 19
+
+
+État 9
+
+    5 ExprAffectation: • VAR ASSIGN ExprAffectation
+    6                | • Expression
+    7 Expression: • ExpressionSomme
+    8 ExpressionSomme: • ExpressionSomme PLUS Terme
+    9                | • ExpressionSomme MINUS Terme
+   10                | • Terme
+   11 Terme: • Terme MULT Puissance
+   12      | • Terme DIV Puissance
+   13      | • Terme MODULO Puissance
+   14      | • Puissance
+   15 Puissance: • Unaire EXPON Puissance
+   16          | • Unaire
+   17 Unaire: • MINUS Unaire
+   18       | • PLUS Unaire
+   19       | • Primaire
+   20 Primaire: • COS ExpressionSomme
+   21         | • SIN ExpressionSomme
+   22         | • FLOTTANT
+   23         | • PI
+   24         | • VAR
+   25         | • LB ExprAffectation RB
+   25         | LB • ExprAffectation RB
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 6
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    ExprAffectation  aller à l'état 24
+    Expression       aller à l'état 14
+    ExpressionSomme  aller à l'état 15
+    Terme            aller à l'état 16
+    Puissance        aller à l'état 17
+    Unaire           aller à l'état 18
+    Primaire         aller à l'état 19
+
+
+État 10
+
+    8 ExpressionSomme: • ExpressionSomme PLUS Terme
+    9                | • ExpressionSomme MINUS Terme
+   10                | • Terme
+   11 Terme: • Terme MULT Puissance
+   12      | • Terme DIV Puissance
+   13      | • Terme MODULO Puissance
+   14      | • Puissance
+   15 Puissance: • Unaire EXPON Puissance
+   16          | • Unaire
+   17 Unaire: • MINUS Unaire
+   18       | • PLUS Unaire
+   19       | • Primaire
+   20 Primaire: • COS ExpressionSomme
+   20         | COS • ExpressionSomme
+   21         | • SIN ExpressionSomme
+   22         | • FLOTTANT
+   23         | • PI
+   24         | • VAR
+   25         | • LB ExprAffectation RB
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 21
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    ExpressionSomme  aller à l'état 25
+    Terme            aller à l'état 16
+    Puissance        aller à l'état 17
+    Unaire           aller à l'état 18
+    Primaire         aller à l'état 19
+
+
+État 11
+
+    8 ExpressionSomme: • ExpressionSomme PLUS Terme
+    9                | • ExpressionSomme MINUS Terme
+   10                | • Terme
+   11 Terme: • Terme MULT Puissance
+   12      | • Terme DIV Puissance
+   13      | • Terme MODULO Puissance
+   14      | • Puissance
+   15 Puissance: • Unaire EXPON Puissance
+   16          | • Unaire
+   17 Unaire: • MINUS Unaire
+   18       | • PLUS Unaire
+   19       | • Primaire
+   20 Primaire: • COS ExpressionSomme
+   21         | • SIN ExpressionSomme
+   21         | SIN • ExpressionSomme
+   22         | • FLOTTANT
+   23         | • PI
+   24         | • VAR
+   25         | • LB ExprAffectation RB
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 21
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    ExpressionSomme  aller à l'état 26
+    Terme            aller à l'état 16
+    Puissance        aller à l'état 17
+    Unaire           aller à l'état 18
+    Primaire         aller à l'état 19
+
+
+État 12
+
+    3 ListeInstr: ListeInstr Instruction •
+
+    $défaut  réduction par utilisation de la règle 3 (ListeInstr)
+
+
+État 13
+
+    4 Instruction: ExprAffectation • SEMICOLON
+
+    SEMICOLON  décalage et aller à l'état 27
+
+
+État 14
+
+    6 ExprAffectation: Expression •
+
+    $défaut  réduction par utilisation de la règle 6 (ExprAffectation)
+
+
+État 15
+
+    7 Expression: ExpressionSomme •  [SEMICOLON, RB]
+    8 ExpressionSomme: ExpressionSomme • PLUS Terme
+    9                | ExpressionSomme • MINUS Terme
+
+    PLUS   décalage et aller à l'état 28
+    MINUS  décalage et aller à l'état 29
+
+    $défaut  réduction par utilisation de la règle 7 (Expression)
+
+
+État 16
+
+   10 ExpressionSomme: Terme •  [PLUS, MINUS, MULT, DIV, EXPON, SEMICOLON, RB, MODULO]
+   11 Terme: Terme • MULT Puissance
+   12      | Terme • DIV Puissance
+   13      | Terme • MODULO Puissance
+
+    MULT    décalage et aller à l'état 30
+    DIV     décalage et aller à l'état 31
+    MODULO  décalage et aller à l'état 32
+
+    MULT     [réduction par utilisation de la règle 10 (ExpressionSomme)]
+    DIV      [réduction par utilisation de la règle 10 (ExpressionSomme)]
+    MODULO   [réduction par utilisation de la règle 10 (ExpressionSomme)]
+    $défaut  réduction par utilisation de la règle 10 (ExpressionSomme)
+
+    conflit par décalage/réduction sur le jeton MULT:
+       10 ExpressionSomme: Terme •
+       11 Terme: Terme • MULT Puissance
+      Exemple: COS Terme • MULT Puissance
+      Dérivation par décalage
+        Terme
+        ↳ 14: Puissance
+              ↳ 16: Unaire
+                    ↳ 19: Primaire
+                          ↳ 20: COS ExpressionSomme
+                                    ↳ 10: Terme
+                                          ↳ 11: Terme • MULT Puissance
+      Dérivation par réduction
+        Terme
+        ↳ 11: Terme                                       MULT Puissance
+              ↳ 14: Puissance
+                    ↳ 16: Unaire
+                          ↳ 19: Primaire
+                                ↳ 20: COS ExpressionSomme
+                                          ↳ 10: Terme •
+
+    conflit par décalage/réduction sur le jeton DIV:
+       10 ExpressionSomme: Terme •
+       12 Terme: Terme • DIV Puissance
+      Exemple: COS Terme • DIV Puissance
+      Dérivation par décalage
+        Terme
+        ↳ 14: Puissance
+              ↳ 16: Unaire
+                    ↳ 19: Primaire
+                          ↳ 20: COS ExpressionSomme
+                                    ↳ 10: Terme
+                                          ↳ 12: Terme • DIV Puissance
+      Dérivation par réduction
+        Terme
+        ↳ 12: Terme                                       DIV Puissance
+              ↳ 14: Puissance
+                    ↳ 16: Unaire
+                          ↳ 19: Primaire
+                                ↳ 20: COS ExpressionSomme
+                                          ↳ 10: Terme •
+
+    conflit par décalage/réduction sur le jeton MODULO:
+       10 ExpressionSomme: Terme •
+       13 Terme: Terme • MODULO Puissance
+      Exemple: COS Terme • MODULO Puissance
+      Dérivation par décalage
+        Terme
+        ↳ 14: Puissance
+              ↳ 16: Unaire
+                    ↳ 19: Primaire
+                          ↳ 20: COS ExpressionSomme
+                                    ↳ 10: Terme
+                                          ↳ 13: Terme • MODULO Puissance
+      Dérivation par réduction
+        Terme
+        ↳ 13: Terme                                       MODULO Puissance
+              ↳ 14: Puissance
+                    ↳ 16: Unaire
+                          ↳ 19: Primaire
+                                ↳ 20: COS ExpressionSomme
+                                          ↳ 10: Terme •
+
+
+
+État 17
+
+   14 Terme: Puissance •
+
+    $défaut  réduction par utilisation de la règle 14 (Terme)
+
+
+État 18
+
+   15 Puissance: Unaire • EXPON Puissance
+   16          | Unaire •  [PLUS, MINUS, MULT, DIV, EXPON, SEMICOLON, RB, MODULO]
+
+    EXPON  décalage et aller à l'état 33
+
+    EXPON    [réduction par utilisation de la règle 16 (Puissance)]
+    $défaut  réduction par utilisation de la règle 16 (Puissance)
+
+    conflit par décalage/réduction sur le jeton EXPON:
+       16 Puissance: Unaire •
+       15 Puissance: Unaire • EXPON Puissance
+      Exemple: COS Unaire • EXPON Puissance
+      Dérivation par décalage
+        Puissance
+        ↳ 16: Unaire
+              ↳ 19: Primaire
+                    ↳ 20: COS ExpressionSomme
+                              ↳ 10: Terme
+                                    ↳ 14: Puissance
+                                          ↳ 15: Unaire • EXPON Puissance
+      Dérivation par réduction
+        Puissance
+        ↳ 15: Unaire                                     EXPON Puissance
+              ↳ 19: Primaire
+                    ↳ 20: COS ExpressionSomme
+                              ↳ 10: Terme
+                                    ↳ 14: Puissance
+                                          ↳ 16: Unaire •
+
+
+
+État 19
+
+   19 Unaire: Primaire •
+
+    $défaut  réduction par utilisation de la règle 19 (Unaire)
+
+
+État 20
+
+    5 ExprAffectation: • VAR ASSIGN ExprAffectation
+    5                | VAR ASSIGN • ExprAffectation
+    6                | • Expression
+    7 Expression: • ExpressionSomme
+    8 ExpressionSomme: • ExpressionSomme PLUS Terme
+    9                | • ExpressionSomme MINUS Terme
+   10                | • Terme
+   11 Terme: • Terme MULT Puissance
+   12      | • Terme DIV Puissance
+   13      | • Terme MODULO Puissance
+   14      | • Puissance
+   15 Puissance: • Unaire EXPON Puissance
+   16          | • Unaire
+   17 Unaire: • MINUS Unaire
+   18       | • PLUS Unaire
+   19       | • Primaire
+   20 Primaire: • COS ExpressionSomme
+   21         | • SIN ExpressionSomme
+   22         | • FLOTTANT
+   23         | • PI
+   24         | • VAR
+   25         | • LB ExprAffectation RB
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 6
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    ExprAffectation  aller à l'état 34
+    Expression       aller à l'état 14
+    ExpressionSomme  aller à l'état 15
+    Terme            aller à l'état 16
+    Puissance        aller à l'état 17
+    Unaire           aller à l'état 18
+    Primaire         aller à l'état 19
+
+
+État 21
+
+   24 Primaire: VAR •
+
+    $défaut  réduction par utilisation de la règle 24 (Primaire)
+
+
+État 22
+
+   18 Unaire: PLUS Unaire •
+
+    $défaut  réduction par utilisation de la règle 18 (Unaire)
+
+
+État 23
+
+   17 Unaire: MINUS Unaire •
+
+    $défaut  réduction par utilisation de la règle 17 (Unaire)
+
+
+État 24
+
+   25 Primaire: LB ExprAffectation • RB
+
+    RB  décalage et aller à l'état 35
+
+
+État 25
+
+    8 ExpressionSomme: ExpressionSomme • PLUS Terme
+    9                | ExpressionSomme • MINUS Terme
+   20 Primaire: COS ExpressionSomme •  [PLUS, MINUS, MULT, DIV, EXPON, SEMICOLON, RB, MODULO]
+
+    PLUS   décalage et aller à l'état 28
+    MINUS  décalage et aller à l'état 29
+
+    PLUS     [réduction par utilisation de la règle 20 (Primaire)]
+    MINUS    [réduction par utilisation de la règle 20 (Primaire)]
+    $défaut  réduction par utilisation de la règle 20 (Primaire)
+
+    conflit par décalage/réduction sur le jeton PLUS:
+       20 Primaire: COS ExpressionSomme •
+        8 ExpressionSomme: ExpressionSomme • PLUS Terme
+      Exemple: COS ExpressionSomme • PLUS Terme
+      Dérivation par décalage
+        ExpressionSomme
+        ↳ 10: Terme
+              ↳ 14: Puissance
+                    ↳ 16: Unaire
+                          ↳ 19: Primaire
+                                ↳ 20: COS ExpressionSomme
+                                          ↳ 8: ExpressionSomme • PLUS Terme
+      Dérivation par réduction
+        ExpressionSomme
+        ↳ 8: ExpressionSomme                                     PLUS Terme
+             ↳ 10: Terme
+                   ↳ 14: Puissance
+                         ↳ 16: Unaire
+                               ↳ 19: Primaire
+                                     ↳ 20: COS ExpressionSomme •
+
+    conflit par décalage/réduction sur le jeton MINUS:
+       20 Primaire: COS ExpressionSomme •
+        9 ExpressionSomme: ExpressionSomme • MINUS Terme
+      Exemple: COS ExpressionSomme • MINUS Terme
+      Dérivation par décalage
+        ExpressionSomme
+        ↳ 10: Terme
+              ↳ 14: Puissance
+                    ↳ 16: Unaire
+                          ↳ 19: Primaire
+                                ↳ 20: COS ExpressionSomme
+                                          ↳ 9: ExpressionSomme • MINUS Terme
+      Dérivation par réduction
+        ExpressionSomme
+        ↳ 9: ExpressionSomme                                     MINUS Terme
+             ↳ 10: Terme
+                   ↳ 14: Puissance
+                         ↳ 16: Unaire
+                               ↳ 19: Primaire
+                                     ↳ 20: COS ExpressionSomme •
+
+
+
+État 26
+
+    8 ExpressionSomme: ExpressionSomme • PLUS Terme
+    9                | ExpressionSomme • MINUS Terme
+   21 Primaire: SIN ExpressionSomme •  [PLUS, MINUS, MULT, DIV, EXPON, SEMICOLON, RB, MODULO]
+
+    PLUS   décalage et aller à l'état 28
+    MINUS  décalage et aller à l'état 29
+
+    PLUS     [réduction par utilisation de la règle 21 (Primaire)]
+    MINUS    [réduction par utilisation de la règle 21 (Primaire)]
+    $défaut  réduction par utilisation de la règle 21 (Primaire)
+
+    conflit par décalage/réduction sur le jeton PLUS:
+       21 Primaire: SIN ExpressionSomme •
+        8 ExpressionSomme: ExpressionSomme • PLUS Terme
+      Exemple: SIN ExpressionSomme • PLUS Terme
+      Dérivation par décalage
+        ExpressionSomme
+        ↳ 10: Terme
+              ↳ 14: Puissance
+                    ↳ 16: Unaire
+                          ↳ 19: Primaire
+                                ↳ 21: SIN ExpressionSomme
+                                          ↳ 8: ExpressionSomme • PLUS Terme
+      Dérivation par réduction
+        ExpressionSomme
+        ↳ 8: ExpressionSomme                                     PLUS Terme
+             ↳ 10: Terme
+                   ↳ 14: Puissance
+                         ↳ 16: Unaire
+                               ↳ 19: Primaire
+                                     ↳ 21: SIN ExpressionSomme •
+
+    conflit par décalage/réduction sur le jeton MINUS:
+       21 Primaire: SIN ExpressionSomme •
+        9 ExpressionSomme: ExpressionSomme • MINUS Terme
+      Exemple: SIN ExpressionSomme • MINUS Terme
+      Dérivation par décalage
+        ExpressionSomme
+        ↳ 10: Terme
+              ↳ 14: Puissance
+                    ↳ 16: Unaire
+                          ↳ 19: Primaire
+                                ↳ 21: SIN ExpressionSomme
+                                          ↳ 9: ExpressionSomme • MINUS Terme
+      Dérivation par réduction
+        ExpressionSomme
+        ↳ 9: ExpressionSomme                                     MINUS Terme
+             ↳ 10: Terme
+                   ↳ 14: Puissance
+                         ↳ 16: Unaire
+                               ↳ 19: Primaire
+                                     ↳ 21: SIN ExpressionSomme •
+
+
+
+État 27
+
+    4 Instruction: ExprAffectation SEMICOLON •
+
+    $défaut  réduction par utilisation de la règle 4 (Instruction)
+
+
+État 28
+
+    8 ExpressionSomme: ExpressionSomme PLUS • Terme
+   11 Terme: • Terme MULT Puissance
+   12      | • Terme DIV Puissance
+   13      | • Terme MODULO Puissance
+   14      | • Puissance
+   15 Puissance: • Unaire EXPON Puissance
+   16          | • Unaire
+   17 Unaire: • MINUS Unaire
+   18       | • PLUS Unaire
+   19       | • Primaire
+   20 Primaire: • COS ExpressionSomme
+   21         | • SIN ExpressionSomme
+   22         | • FLOTTANT
+   23         | • PI
+   24         | • VAR
+   25         | • LB ExprAffectation RB
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 21
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    Terme      aller à l'état 36
+    Puissance  aller à l'état 17
+    Unaire     aller à l'état 18
+    Primaire   aller à l'état 19
+
+
+État 29
+
+    9 ExpressionSomme: ExpressionSomme MINUS • Terme
+   11 Terme: • Terme MULT Puissance
+   12      | • Terme DIV Puissance
+   13      | • Terme MODULO Puissance
+   14      | • Puissance
+   15 Puissance: • Unaire EXPON Puissance
+   16          | • Unaire
+   17 Unaire: • MINUS Unaire
+   18       | • PLUS Unaire
+   19       | • Primaire
+   20 Primaire: • COS ExpressionSomme
+   21         | • SIN ExpressionSomme
+   22         | • FLOTTANT
+   23         | • PI
+   24         | • VAR
+   25         | • LB ExprAffectation RB
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 21
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    Terme      aller à l'état 37
+    Puissance  aller à l'état 17
+    Unaire     aller à l'état 18
+    Primaire   aller à l'état 19
+
+
+État 30
+
+   11 Terme: Terme MULT • Puissance
+   15 Puissance: • Unaire EXPON Puissance
+   16          | • Unaire
+   17 Unaire: • MINUS Unaire
+   18       | • PLUS Unaire
+   19       | • Primaire
+   20 Primaire: • COS ExpressionSomme
+   21         | • SIN ExpressionSomme
+   22         | • FLOTTANT
+   23         | • PI
+   24         | • VAR
+   25         | • LB ExprAffectation RB
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 21
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    Puissance  aller à l'état 38
+    Unaire     aller à l'état 18
+    Primaire   aller à l'état 19
+
+
+État 31
+
+   12 Terme: Terme DIV • Puissance
+   15 Puissance: • Unaire EXPON Puissance
+   16          | • Unaire
+   17 Unaire: • MINUS Unaire
+   18       | • PLUS Unaire
+   19       | • Primaire
+   20 Primaire: • COS ExpressionSomme
+   21         | • SIN ExpressionSomme
+   22         | • FLOTTANT
+   23         | • PI
+   24         | • VAR
+   25         | • LB ExprAffectation RB
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 21
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    Puissance  aller à l'état 39
+    Unaire     aller à l'état 18
+    Primaire   aller à l'état 19
+
+
+État 32
+
+   13 Terme: Terme MODULO • Puissance
+   15 Puissance: • Unaire EXPON Puissance
+   16          | • Unaire
+   17 Unaire: • MINUS Unaire
+   18       | • PLUS Unaire
+   19       | • Primaire
+   20 Primaire: • COS ExpressionSomme
+   21         | • SIN ExpressionSomme
+   22         | • FLOTTANT
+   23         | • PI
+   24         | • VAR
+   25         | • LB ExprAffectation RB
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 21
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    Puissance  aller à l'état 40
+    Unaire     aller à l'état 18
+    Primaire   aller à l'état 19
+
+
+État 33
+
+   15 Puissance: • Unaire EXPON Puissance
+   15          | Unaire EXPON • Puissance
+   16          | • Unaire
+   17 Unaire: • MINUS Unaire
+   18       | • PLUS Unaire
+   19       | • Primaire
+   20 Primaire: • COS ExpressionSomme
+   21         | • SIN ExpressionSomme
+   22         | • FLOTTANT
+   23         | • PI
+   24         | • VAR
+   25         | • LB ExprAffectation RB
+
+    FLOTTANT  décalage et aller à l'état 4
+    PI        décalage et aller à l'état 5
+    VAR       décalage et aller à l'état 21
+    PLUS      décalage et aller à l'état 7
+    MINUS     décalage et aller à l'état 8
+    LB        décalage et aller à l'état 9
+    COS       décalage et aller à l'état 10
+    SIN       décalage et aller à l'état 11
+
+    Puissance  aller à l'état 41
+    Unaire     aller à l'état 18
+    Primaire   aller à l'état 19
+
+
+État 34
+
+    5 ExprAffectation: VAR ASSIGN ExprAffectation •
+
+    $défaut  réduction par utilisation de la règle 5 (ExprAffectation)
+
+
+État 35
+
+   25 Primaire: LB ExprAffectation RB •
+
+    $défaut  réduction par utilisation de la règle 25 (Primaire)
+
+
+État 36
+
+    8 ExpressionSomme: ExpressionSomme PLUS Terme •  [PLUS, MINUS, MULT, DIV, EXPON, SEMICOLON, RB, MODULO]
+   11 Terme: Terme • MULT Puissance
+   12      | Terme • DIV Puissance
+   13      | Terme • MODULO Puissance
+
+    MULT    décalage et aller à l'état 30
+    DIV     décalage et aller à l'état 31
+    MODULO  décalage et aller à l'état 32
+
+    MULT     [réduction par utilisation de la règle 8 (ExpressionSomme)]
+    DIV      [réduction par utilisation de la règle 8 (ExpressionSomme)]
+    MODULO   [réduction par utilisation de la règle 8 (ExpressionSomme)]
+    $défaut  réduction par utilisation de la règle 8 (ExpressionSomme)
+
+    conflit par décalage/réduction sur le jeton MULT:
+        8 ExpressionSomme: ExpressionSomme PLUS Terme •
+       11 Terme: Terme • MULT Puissance
+      Exemple: COS ExpressionSomme PLUS Terme • MULT Puissance
+      Dérivation par décalage
+        Unaire
+        ↳ 19: Primaire
+              ↳ 20: COS ExpressionSomme
+                        ↳ 8: ExpressionSomme PLUS Terme
+                                                  ↳ 11: Terme • MULT Puissance
+      Dérivation par réduction
+        Terme
+        ↳ 11: Terme                                                         MULT Puissance
+              ↳ 14: Puissance
+                    ↳ 16: Unaire
+                          ↳ 19: Primaire
+                                ↳ 20: COS ExpressionSomme
+                                          ↳ 8: ExpressionSomme PLUS Terme •
+
+    conflit par décalage/réduction sur le jeton DIV:
+        8 ExpressionSomme: ExpressionSomme PLUS Terme •
+       12 Terme: Terme • DIV Puissance
+      Exemple: COS ExpressionSomme PLUS Terme • DIV Puissance
+      Dérivation par décalage
+        Unaire
+        ↳ 19: Primaire
+              ↳ 20: COS ExpressionSomme
+                        ↳ 8: ExpressionSomme PLUS Terme
+                                                  ↳ 12: Terme • DIV Puissance
+      Dérivation par réduction
+        Terme
+        ↳ 12: Terme                                                         DIV Puissance
+              ↳ 14: Puissance
+                    ↳ 16: Unaire
+                          ↳ 19: Primaire
+                                ↳ 20: COS ExpressionSomme
+                                          ↳ 8: ExpressionSomme PLUS Terme •
+
+    conflit par décalage/réduction sur le jeton MODULO:
+        8 ExpressionSomme: ExpressionSomme PLUS Terme •
+       13 Terme: Terme • MODULO Puissance
+      Exemple: COS ExpressionSomme PLUS Terme • MODULO Puissance
+      Dérivation par décalage
+        Unaire
+        ↳ 19: Primaire
+              ↳ 20: COS ExpressionSomme
+                        ↳ 8: ExpressionSomme PLUS Terme
+                                                  ↳ 13: Terme • MODULO Puissance
+      Dérivation par réduction
+        Terme
+        ↳ 13: Terme                                                         MODULO Puissance
+              ↳ 14: Puissance
+                    ↳ 16: Unaire
+                          ↳ 19: Primaire
+                                ↳ 20: COS ExpressionSomme
+                                          ↳ 8: ExpressionSomme PLUS Terme •
+
+
+
+État 37
+
+    9 ExpressionSomme: ExpressionSomme MINUS Terme •  [PLUS, MINUS, MULT, DIV, EXPON, SEMICOLON, RB, MODULO]
+   11 Terme: Terme • MULT Puissance
+   12      | Terme • DIV Puissance
+   13      | Terme • MODULO Puissance
+
+    MULT    décalage et aller à l'état 30
+    DIV     décalage et aller à l'état 31
+    MODULO  décalage et aller à l'état 32
+
+    MULT     [réduction par utilisation de la règle 9 (ExpressionSomme)]
+    DIV      [réduction par utilisation de la règle 9 (ExpressionSomme)]
+    MODULO   [réduction par utilisation de la règle 9 (ExpressionSomme)]
+    $défaut  réduction par utilisation de la règle 9 (ExpressionSomme)
+
+    conflit par décalage/réduction sur le jeton MULT:
+        9 ExpressionSomme: ExpressionSomme MINUS Terme •
+       11 Terme: Terme • MULT Puissance
+      Exemple: COS ExpressionSomme MINUS Terme • MULT Puissance
+      Dérivation par décalage
+        Unaire
+        ↳ 19: Primaire
+              ↳ 20: COS ExpressionSomme
+                        ↳ 9: ExpressionSomme MINUS Terme
+                                                   ↳ 11: Terme • MULT Puissance
+      Dérivation par réduction
+        Terme
+        ↳ 11: Terme                                                          MULT Puissance
+              ↳ 14: Puissance
+                    ↳ 16: Unaire
+                          ↳ 19: Primaire
+                                ↳ 20: COS ExpressionSomme
+                                          ↳ 9: ExpressionSomme MINUS Terme •
+
+    conflit par décalage/réduction sur le jeton DIV:
+        9 ExpressionSomme: ExpressionSomme MINUS Terme •
+       12 Terme: Terme • DIV Puissance
+      Exemple: COS ExpressionSomme MINUS Terme • DIV Puissance
+      Dérivation par décalage
+        Unaire
+        ↳ 19: Primaire
+              ↳ 20: COS ExpressionSomme
+                        ↳ 9: ExpressionSomme MINUS Terme
+                                                   ↳ 12: Terme • DIV Puissance
+      Dérivation par réduction
+        Terme
+        ↳ 12: Terme                                                          DIV Puissance
+              ↳ 14: Puissance
+                    ↳ 16: Unaire
+                          ↳ 19: Primaire
+                                ↳ 20: COS ExpressionSomme
+                                          ↳ 9: ExpressionSomme MINUS Terme •
+
+    conflit par décalage/réduction sur le jeton MODULO:
+        9 ExpressionSomme: ExpressionSomme MINUS Terme •
+       13 Terme: Terme • MODULO Puissance
+      Exemple: COS ExpressionSomme MINUS Terme • MODULO Puissance
+      Dérivation par décalage
+        Unaire
+        ↳ 19: Primaire
+              ↳ 20: COS ExpressionSomme
+                        ↳ 9: ExpressionSomme MINUS Terme
+                                                   ↳ 13: Terme • MODULO Puissance
+      Dérivation par réduction
+        Terme
+        ↳ 13: Terme                                                          MODULO Puissance
+              ↳ 14: Puissance
+                    ↳ 16: Unaire
+                          ↳ 19: Primaire
+                                ↳ 20: COS ExpressionSomme
+                                          ↳ 9: ExpressionSomme MINUS Terme •
+
+
+
+État 38
+
+   11 Terme: Terme MULT Puissance •
+
+    $défaut  réduction par utilisation de la règle 11 (Terme)
+
+
+État 39
+
+   12 Terme: Terme DIV Puissance •
+
+    $défaut  réduction par utilisation de la règle 12 (Terme)
+
+
+État 40
+
+   13 Terme: Terme MODULO Puissance •
+
+    $défaut  réduction par utilisation de la règle 13 (Terme)
+
+
+État 41
+
+   15 Puissance: Unaire EXPON Puissance •
+
+    $défaut  réduction par utilisation de la règle 15 (Puissance)

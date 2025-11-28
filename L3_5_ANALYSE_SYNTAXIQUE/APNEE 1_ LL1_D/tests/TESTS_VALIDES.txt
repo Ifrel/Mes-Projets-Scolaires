@@ -1,0 +1,143 @@
+alpha = 2 + 3 * 4;
+beta = 10 + 6 / 3;
+gamma = 10 - 2 * 3;
+delta = 10 - 6 / 2;
+phi = 2 * 3 ^ 2;
+theta = 2 + 3 ^ 2;
+kappa = 10 / 2 ^ 2;
+mu = 10 - 2 ^ 2;
+nu = 1 + 2 * 3 ^ 2;
+omega = 20 - 10 / 2 ^ 2;
+
+
+rho = 10 - 5 - 2;
+sigma = 20 / 5 / 2;
+chi = 1 + 2 + 3 + 4;
+psi = 2 * 3 * 4;
+lambda = 10 + 5 - 3 - 2;
+eta = 20 / 5 * 2;
+tau = 20 * 2 / 4;
+xi = 20 - 10 - 5 - 2;
+pivar = 100 - 50 + 25 - 10;
+omega = 64 / 4 / 2 / 2;
+
+
+expoA = 2 ^ 3 ^ 2;
+expoB = 2 ^ 2 ^ 3;
+expoC = 1 ^ 2 ^ 3;
+expoD = 1 ^ 100;
+expoE = 5 ^ 0;
+expoF = 2 ^ 1 ^ 2;
+expoG = 3 ^ 2 ^ 2;
+
+
+u = v = 10;
+a = b = c = 5;
+x = y = 2 + 3;
+
+
+cosA = cos 0;
+sinA = sin 0;
+x = 1;
+x = 2;
+sinX = sin x * 3;
+x = 3;
+cosX = cos x - 1;
+
+alpha = 2 + 3 * 4;
+chainA = chainB = 10;
+chainC = chainD = chainE = 5;
+chainF = chainG = 2 + 3;
+
+
+trigA = cos 0;
+trigB = sin 0;
+trigC = cos 0 + sin 0;
+trigD = cos 0 ^ 2;
+trigE = sin 0 / 2;
+
+
+piExpr = piVar / 1;
+
+
+parenA = (2 + 3);
+parenB = (2 + 3) * 4;
+parenC = ((2 + 3) * 4);
+parenD = (1 + 2) * (3 + 4);
+parenE = (2 + 3) ^ 2;
+parenF = ((1 + 2) * (3 + 4)) / (2 + 1);
+
+
+midA = (alpha = 7) + beta * (gamma = 6);
+midB = (delta = 5) * (phi + (theta = 9) / kappa);
+midC = 1 + (mu = 8) * (nu + (omega = 4));
+
+
+longA = (alpha + beta * (gamma - delta) + (phi * (theta + kappa))) - (mu / (nu + omega));
+longB = ((rho + sigma - chi) * (psi + lambda / eta)) - ((tau - xi) * (piVar + oma));
+
+
+veryLongOne = (
+( (alpha * (beta - (gamma / (delta + (phi - (theta * (kappa + mu)))))))
++ ((nu ^ omega) - (rho * (sigma + (chi - (psi / (lambda + eta)))))) )
+- ((tau + xi) * ((piVar - oma) + (chainA / (chainB + chainC))))
+);
+
+
+veryLongTwo = (
+( ( (alpha + (beta * (gamma - (delta + (phi / (theta - (kappa + mu)))))))
+* ((nu + omega) - (rho / (sigma + (chi - psi)))))
++ ((lambda - eta) ^ (tau + xi)) )
+/ ((piVar + oma) - (chainD * (chainE + (chainF / chainG))))
+);
+
+
+extremeOne = (
+( (aOne = 3) + (bOne = aOne * 2) - (cOne = (bOne + alpha) / (dOne = 7)) )
+* ((eOne = cOne ^ 2) - (fOne = (eOne + beta) / (gOne = 4 + (hOne = 2))))
++ ((iOne = gOne * hOne) / (jOne = iOne - (kOne = 1)))
+);
+
+
+extremeTwo = (
+((pOne = (qOne = 5) + (rOne = qOne * 2)) * (sOne = pOne + rOne - alpha))
+- ((tOne = sOne / (uOne = 3 + (vOne = 2))) + (wOne = tOne ^ 2))
++ ((xOne = ((yOne = 7) - (zOne = 1)) * (aaOne = yOne + zOne)) / (abOne = aaOne - 2))
+);
+
+
+megaExpression = (
+( (longA + longB - veryLongOne) * (veryLongTwo + extremeOne) )
+- (
+(extremeTwo ^ (aOne + bOne - cOne))
++ ((eOne * fOne) - (iOne / jOne))
+)
++ ((pOne + qOne) * (rOne - sOne) / (tOne + uOne - vOne))
+);
+
+
+variantOne = (
+( (cosA = cos (alpha + beta / (gamma + 1))) + (sinA = sin (delta - phi / (theta + 1))) )
+* ((expoA + expoB) - (expoC / (expoD + expoE)))
++ ((piExpr + chi) / (psi - lambda))
+);
+
+
+variantTwo = (
+((chainA + chainB - chainC) * (chainD / (chainE + chainF)))
++ ((alpha ^ beta) - (gamma ^ delta) + (phi * theta / kappa))
+);
+
+
+finalLongOne = (
+((megaExpression + variantOne - variantTwo) * (veryLongOne + veryLongTwo))
+/ ((extremeOne - extremeTwo) + (longA * longB) - (midA + midB + midC))
+);
+
+
+finalLongTwo = (
+( (finalLongOne + megaExpression) - (variantOne * variantTwo) )
++ ((alpha + beta + gamma + delta + phi + theta + kappa + mu + nu + omega)
+* (rho + sigma + chi + psi + lambda + eta + tau + xi + piVar + oma))
+- ((aOne + bOne + cOne + dOne + eOne + fOne + gOne + hOne) / (iOne + jOne + kOne))
+);
