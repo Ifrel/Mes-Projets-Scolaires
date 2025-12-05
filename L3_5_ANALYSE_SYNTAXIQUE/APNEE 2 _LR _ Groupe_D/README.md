@@ -19,32 +19,54 @@ Ci-dessous ce que j’ai retenu pour les grammaires utilisées.
 ## assign1 (grammaire non ambiguë, priorités encodées directement)
 ```
 Programme        -> ListeInstr
-ListeInstr       -> ListeInstr Instruction | ε
+ListeInstr       -> ListeInstr Instruction
+ListeInstr       -> ε
 Instruction      -> ExprAffectation ;
-ExprAffectation  -> VAR = ExprAffectation | Expression
+ExprAffectation  -> VAR = ExprAffectation
+ExprAffectation  -> Expression
 Expression       -> ExpressionSomme
-ExpressionSomme  -> ExpressionSomme + Terme | ExpressionSomme - Terme | Terme
-Terme            -> Terme * Puissance | Terme / Puissance | Terme % Puissance | Puissance
-Puissance        -> Unaire ^ Puissance | Unaire       // ^ droite-associatif
-Unaire           -> - Unaire | + Unaire | Primaire
-Primaire         -> FLOTTANT | pi | VAR | (ExprAffectation) | cos ExpressionSomme | sin ExpressionSomme
+ExpressionSomme  -> ExpressionSomme + Terme
+ExpressionSomme  -> ExpressionSomme - Terme
+ExpressionSomme  -> Terme
+Terme            -> Terme * Puissance
+Terme            -> Terme / Puissance
+Terme            -> Terme % Puissance
+Terme            -> Puissance
+Puissance        -> Unaire ^ Puissance          // ^ droite-associatif
+Puissance        -> Unaire       
+Unaire           -> - Unaire
+Unaire           -> + Unaire
+Unaire           -> Primaire
+Primaire         -> FLOTTANT
+Primaire         -> pi
+Primaire         -> VAR
+Primaire         -> (ExprAffectation)
+Primaire         -> cos ExpressionSomme
+Primaire         -> sin ExpressionSomme
 ```
 
 ## assign2 (grammaire volontairement ambiguë, priorités imposées par bison)
 ```
 Programme        -> ListeInstr
-ListeInstr       -> ListeInstr Instruction | ε
+ListeInstr       -> ListeInstr Instruction
+ListeInstr       -> ε
 Instruction      -> ExprAffectation ;
-ExprAffectation  -> VAR = ExprAffectation | Expression
+ExprAffectation  -> VAR = ExprAffectation
+ExprAffectation  -> Expression
 Expression       -> Expression + Expression
-                  | Expression - Expression
-                  | Expression * Expression
-                  | Expression / Expression
-                  | Expression % Expression
-                  | Expression ^ Expression
-                  | cos Expression | sin Expression
-                  | + Expression | - Expression
-                  | ( Expression ) | FLOTTANT | pi | VAR
+Expression       -> Expression - Expression
+Expression       -> Expression * Expression
+Expression       -> Expression / Expression
+Expression       -> Expression % Expression
+Expression       -> Expression ^ Expression
+Expression       -> cos Expression
+Expression       -> sin Expression
+Expression       -> + Expression
+Expression       -> - Expression
+Expression       -> ( Expression )
+Expression       -> FLOTTANT
+Expression       -> pi
+Expression       -> VAR
 ```
 Priorités dans `assign2.y` (de la plus faible à la plus forte) :
 `%right ASSIGN`, `%right COS SIN`, `%left PLUS MINUS`, `%left MULT DIV MODULO`, `%right EXPON`, `%precedence UPLUS UMINUS`.
